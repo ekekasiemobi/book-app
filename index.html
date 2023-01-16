@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello Vue:)</h1>
+
+    <div id="app">
+       <div v-if="showBooks">
+            <p>{{ title }} - {{ author }} - {{ age }}</p>
+            <p>{{ books[0].title }} - {{  books[0].author }}</p>
+            <p>{{ books[1].title }} - {{  books[1].author }}</p>
+            <p>{{ books[2].title }} - {{  books[2].author }}</p>
+
+            <ul>
+                <li v-for="book in books">
+                    <img :src="book.img" :alt="book.title">
+                    <h3>{{book.title}}</h3>
+                    <p>{{book.author}}</p>
+                </li>
+            </ul>
+       </div>
+       <!-- clickevent -->
+
+       <button @click="toggleShowBooks">
+        <span v-if="showBooks">Hide Books</span>
+        <!-- <span v-if="!showBooks">Show Books</span> -->
+        <span v-else >Show Books</span>
+       </button>
+
+       <div v-show="showBooks">currently showing books</div>
+
+        <button v-on:click="age++">increase age</button>
+        <button v-on:click="age--">decrease age</button>
+        <div @click="changeTitle('oathbringer')">change book title</div>
+
+        <!-- mouse event -->
+        <div class="box"@mouseover="handleEvent">mouserover (enter)</div>
+        <div class="box"@mouseleave="handleEvent">mouseleave (leave) </div>
+        <div class="box"@doubleclick="handleEvent">double click</div>
+        <div class="box"@mousemove="handleMousemove">position</div>
+
+        <!-- attribute Binding -->
+        <a v-bind:href="url">My Twitter page</a>
+
+        <!-- dynamic classes -->
+        <ul>
+            <li v-for="book in books":class="{Fav: book.isFav}">
+                <img :src="book.img" :alt="book.title">
+                <h3>{{book.title}}</h3>
+                <p>{{book.author}}</p>
+            </li>
+        </ul> 
+
+        <!-- challenge Toggling Favs -->
+
+
+        <!-- computed properties --> <br>
+        <h4>filteredBooks</h4>
+        <ul>
+            <li v-for="book in filteredBooks":class="{Fav: book.isFav}">
+                <img :src="book.img" :alt="book.title">
+                <h3>{{book.title}}</h3>
+                <p>{{book.author}}</p>
+            </li>
+        </ul>
+    </div>
+   
+    <script src="app.js"></script>
+</body>
+</html>
